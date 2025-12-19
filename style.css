@@ -1,0 +1,32 @@
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.contact a {
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05); /* โปร่งแสงนิดๆ ดูหรู */
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* จัดตัวอักษรให้อยู่กึ่งกลางปุ่ม */
+    transition: all 0.3s ease;
+}
+
+.contact a:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px); /* ลอยขึ้นเวลาเอาเมาส์วาง */
+}
+.kia-logo {
+  width: 90px;
+  margin: 0 auto 24px;
+  display: block;
+  opacity: 0.85;
+}

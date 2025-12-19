@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ณดิษ | ที่ปรึกษาการขาย KIA</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --kia-black: #050505;
+      --kia-dark-gray: #121212;
+      --kia-border: #2a2a2a;
+      --white: #ffffff;
+      --text-muted: #888888;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: var(--kia-black);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card-container {
+      background: var(--kia-dark-gray);
+      width: 100%;
+      max-width: 400px;
+      border-radius: 32px;
+      padding: 48px 24px;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.8);
+      border: 1px solid var(--kia-border);
+    }
+
+    .kia-logo {
+      width: 100px;
+      margin-bottom: 32px;
+      filter: brightness(0) invert(1);
+    }
+
+    .profile-box {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 24px;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--kia-border);
+      background: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .job-title {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .bio {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #b0b0b0;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 16px;
+      border-radius: 16px;
+      font-size: 16px;
+      border: 1px solid var(--kia-border);
+      transition: all 0.3s ease;
+    }
+
+    .link-btn:hover {
+      background: var(--white);
+      color: var(--kia-black);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(255,255,255,0.1);
+    }
+
+    footer {
+      margin-top: 48px;
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 1.5px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card-container">
+<img src="kia-logo.png" alt="KIA Logo" class="kia-logo">
+  <div class="profile-box">
+    <img src="profile.jpg" class="profile-img" id="profileImg">
+  </div>
+
+  <h1>ณดิษ</h1>
+  <p class="job-title">Sales Consultant</p>
+
+  <p class="bio">
+    ยินดีให้คำปรึกษาการขายรถยนต์ KIA ทุกรุ่น<br>
+    จริงใจ ชัดเจน ให้ข้อมูลตรงไปตรงมา
+  </p>
+
+  <div id="buttonArea" class="links-stack"></div>
+
+  <footer>KIA SALES ADVISOR - NADIT</footer>
+</div>
+
+<script>
+const myContacts = [
+  { label: "💬 LINE ติดต่อสอบถาม", url: "https://line.me/ti/p/~dhiti14", blank: true },
+  { label: "📘 โบรชัวร์ KIA EV5", url: "brochure-ev5.pdf", blank: true },
+  { label: "📘 โบรชัวร์ KIA EV9", url: "brochure-ev9.pdf", blank: true },
+  { label: "📘 โบรชัวร์ KIA Carnival", url: "brochure-carnival.pdf", blank: true },
+  { label: "📄 ใบราคา / ตารางผ่อน", url: "price.pdf", blank: true },
+  { label: "📞 โทรปรึกษาฝ่ายขาย", url: "tel:0846440633", blank: false, phone: true }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttonArea = document.getElementById("buttonArea");
+  const profileImg = document.getElementById("profileImg");
+
+  profileImg.onerror = () => {
+    profileImg.src = "https://ui-avatars.com/api/?name=Nadit&background=1a1a1a&color=fff&size=200";
+  };
+
+  // แยกปุ่มโทรออกมาไว้ล่างสุดเสมอ
+  const phoneBtn = myContacts.filter(i => i.phone);
+  const normalBtn = myContacts.filter(i => !i.phone)
+    .sort((a, b) => a.label.localeCompare(b.label, 'th'));
+
+  const finalButtons = [...normalBtn, ...phoneBtn];
+
+  buttonArea.innerHTML = finalButtons.map(item => `
+    <a href="${item.url}" class="link-btn" ${item.blank ? 'target="_blank"' : ''}>
+      ${item.label}
+    </a>
+  `).join('');
+});
+</script>
+
+</body>
+</html>
